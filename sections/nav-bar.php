@@ -15,21 +15,26 @@ include_once "./functions/connect.php";
                 <a class="nav-link " href="./index.php">Home <span class="sr-only ">(current)</span></a>
             </li>
 
-            <?php
-            $sql = "SELECT * FROM categories";
-            $result = mysqli_query($conn, $sql);
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <?php
+                $sql = "SELECT * FROM categories";
+                $result = mysqli_query($conn, $sql);
 
-            if($result){
-                while($category = mysqli_fetch_assoc($result)){?>
-                        <li class="nav-item">
-                        <a class="nav-link" href="categories.php?cat_id=<?= $category['id'] ?>"><?= $category['title'] ?></a>
-                        </li>
-                    <?php }
+                if ($result) {
+                    while ($category = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <a class="dropdown-item" href="categories.php?cat_id=<?= $category['id'] ?>"><?= $category['title'] ?></a>
+                <?php
+                    }
                 } else {
                     echo "Error: " . mysqli_error($conn);
                 }
-            ?>
-        </ul>
+                ?>
+                        </ul>
     </div>
 
     <div class="d-flex ">
@@ -42,8 +47,7 @@ include_once "./functions/connect.php";
         <?php
                 } else { ?>
         <div class="mr-5 mt-1 d-flex">
-            <p><a class="btn btn-secondary border-success mt-2 " href="panel\blog\create.php" role="button">Create Blog</a></p> 
-            <p><a class="btn btn-secondary border-primary mt-2 ml-1" href="panel\category\create.php" role="button">Create Category</a></p> 
+            <p><a class="btn btn-secondary border-success mt-2 " href="content\blog\create.php" role="button">Create Blog</a></p> 
         </div>
         <a class="text-decoration-none text-white px-2 mt-3" href="./auth/logout.php">Logout</a>
 

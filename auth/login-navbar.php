@@ -4,7 +4,7 @@ include_once "../functions/connect.php";
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary bg-gradient">
 
-    <a class="navbar-brand " href="index.php">Thought Threads</a>
+    <a class="navbar-brand " href="./index.php">Thought Threads</a>
     <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarSupportedContent ">
         <span class="navbar-toggler-icon "></span>
     </button>
@@ -42,8 +42,7 @@ include_once "../functions/connect.php";
         <?php
                 } else { ?>
         <div class="mr-5 mt-1 d-flex">
-            <p><a class="btn btn-secondary border-success mt-2 " href="panel\blog\create.php" role="button">Create Blog</a></p> 
-            <p><a class="btn btn-secondary border-primary mt-2 ml-1" href="panel\category\create.php" role="button">Create Category</a></p> 
+            <p><a class="btn btn-secondary border-success mt-2 " href="content\blog\create.php" role="button">Create Blog</a></p> 
         </div>
         <a class="text-decoration-none text-white px-2 mt-3" href="./auth/logout.php">Logout</a>
 

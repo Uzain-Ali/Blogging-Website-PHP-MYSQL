@@ -1,7 +1,7 @@
 
 <?php
+session_start();
 include_once "functions/connect.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +32,29 @@ $query = "SELECT blogs.*, categories.title AS category_name
             $blog = mysqli_fetch_assoc($result);
             if ($blog !== null) {
 ?>
-    <h1 class="my-5"><?= $blog['title'] ?></h1>
-    <h5 class="d-flex justify-content-between align-items-center my-5">
+    <div class="">
+        <span class="d-flex justify-content-end">
+        <?php 
+            $session =$_SESSION['user'];
+            $authorID=$blog['author_id'];
+            // Check if the logged-in user is the author of this blog
+            if ($session == $authorID) { ?>
+    
+        <?php }?>
+    </div>
+    <h1 class="my-5 d-flex justify-content-between"><?= $blog['title'] ?>  
+    <?php 
+            $session =$_SESSION['user'];
+            $authorID=$blog['author_id'];
+            if ($session == $authorID) { ?>    
+    <span class="">      
+        <span><a class="h5 text-danger" href="index.php?delete=<?= $blog['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></span>
+        <span><a class="h5 text-success ml-2" href="content/blog/create.php?id=<?= $blog['id'] ?>">Edit</a></span>
+        </span>
+        <?php }?>
+</h1>
+
+    <h5 class="d-flex justify-content-between align-items-center my-4">
         <a href="category.php?cat_id=<?= $blog['cat_id'] ?>"><?= $blog['category_name'] ?></a>
         <span class="date-time"><?= $blog['created_at'] ?></span>
     </h5>

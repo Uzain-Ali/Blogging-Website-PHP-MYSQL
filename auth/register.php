@@ -68,7 +68,7 @@ if(isset($_POST['signup'])){
 
 
     <div class="app">
-        <?php require_once "../panel/section/login-signup-navBar.php"?>
+        <?php require_once "../content/section/login-signup-navBar.php"?>
 
         <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh; background-color: white;">
                        <h1 class="" >Sign Up</h1>
