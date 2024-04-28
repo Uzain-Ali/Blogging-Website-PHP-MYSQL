@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $row = mysqli_fetch_assoc($result);
                     $userId = $row['id'];
                     $_SESSION['user'] = $userId;
-                    header('location:../index.php');
+                    redirect('index.php');
                 } else {
                     $invalid = 1;
                 }
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             ?>
 
-        <?php require_once "login-navbar.php"?>
+        <?php require_once "../sections/nav-bar.php"?>
 
         <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh; background-color: white;">
                        <h1 class="" >Login</h1>
@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </form>
             </div>
     </div>
+    <?php require_once "../sections/footer.php"?>
 
 
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "./functions/connect.php";
+include_once "../functions/connect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +12,9 @@ include_once "./functions/connect.php";
 </head>
 <body>
     <div class="app">
-         <?php require_once "sections/nav-bar.php"?>
+         <?php require_once "../sections/nav-bar.php"?>
 
-         <div class="container my-5">
+         <div class="container my-5 d-flex flex-column justify-content-center">
             <?php
                 $notFound=0;
                 $noData=0;
@@ -48,12 +48,26 @@ include_once "./functions/connect.php";
                     }else{
                         while ($blog = mysqli_fetch_assoc($result)) {
                     ?>
-                                    <div class="col-md-4">
-                                        <div class="mb-2 overflow-hidden" style="max-height: 15rem;"><img class="img-fluid" src="" alt=""></div>
-                                        <h2 class="h5 text-truncate"><?= $blog['title'] ?></h2>
-                                        <p><?= substr($blog['content'], 0, 80) ?></p>
-                                        <p><a class="btn btn-primary" href="" role="button">Details</a></p>
-                                    </div>
+                    <div class="col-md-4  align-items-center">
+                        <div class=" ">
+                            <div class="d-flex justify-content-around">
+                                <span class="date-time small "><?= $blog['created_at'] ?></span>
+                                <?php 
+                                // Check if the logged-in user is the author of this blog
+                                if (isset($_SESSION['user']) && $_SESSION['user'] == $blog['author_id']) { ?>
+                                    <span class="d-flex justify-content-center">
+                                        <p><a class="small text-danger" href="<?= url('content/blog/delete.php?delete='.$blog['id']) ?>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></p>
+                                        <p><a class=" small  text-success ml-2" href="<?= url('content/blog/create.php?id='.$blog['id']) ?>">Edit</a></p>              
+                                </span>
+                                <?php } ?>
+                                </div>
+                                <h2 class="h5 text-truncate d-flex flex-column justify-content-center"><?= $blog['title'] ?>
+                                </h2>
+                            </div>    
+                            <p><?= substr($blog['content'], 0, 80) ?></p> 
+                            <p><a class="btn btn-secondary" href="<?= url('routes/view-details.php?blog_id='. $blog['id'])?>" role="button">Details</a></p> 
+                        </div>
+                    
                                     <?php
                      }
                     }
@@ -88,6 +102,7 @@ include_once "./functions/connect.php";
     }}?>
     </div>
     </div>
+    <?php require_once "../sections/footer.php"?>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>

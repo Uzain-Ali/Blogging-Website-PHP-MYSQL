@@ -1,7 +1,7 @@
 <?php
 session_start();
-
+include_once "connect.php";
 if(!isset($_SESSION['user']))
 {
-    header('location:../auth/login.php');
+    redirect('auth/login.php');
 }

@@ -1,9 +1,9 @@
 <?php
-include_once "connect.php";
+include_once "../functions/connect.php";
 
 session_start();
 session_unset();
 session_destroy();
 
-header('location:login.php');
+redirect('auth/login.php');
 ?>

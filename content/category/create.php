@@ -3,6 +3,7 @@
     require_once '../../functions/auth.php';
     $cat = 0;
 
+    //Checking the data is submitted and not empty
      if(isset($_POST['name']) && $_POST['name'] !== '') {
         $cat_title=$_POST['name'];
         $sql = "SELECT * FROM categories where title='$cat_title'";
@@ -14,7 +15,7 @@
             }else{
                     $sql = "INSERT INTO categories (title, created_at) values ('$cat_title',NOW());";
                     $result = mysqli_query($conn,$sql);
-                    header('location:../categories.php');
+                    redirect('routes/categories.php');
      }
     }}
 
@@ -38,7 +39,7 @@
         }
         ?>
     <div id="app">
-    <?php require_once '../section/login-signup-navBar.php'; ?>
+    <?php require_once '../../sections/nav-bar.php'; ?>
 
         <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
             <div class="row">
@@ -60,6 +61,8 @@
         </div>
 
     </div>
+    <?php require_once '../../sections/footer.php'; ?>
+
 
     <script src="<?= asset('assets/js/jquery.min.js') ?>"></script>
      <script src="<?= asset('assets/js/bootstrap.min.js') ?>"></script>

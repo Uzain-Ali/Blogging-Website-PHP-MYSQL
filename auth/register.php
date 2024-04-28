@@ -68,7 +68,7 @@ if(isset($_POST['signup'])){
 
 
     <div class="app">
-        <?php require_once "../content/section/login-signup-navBar.php"?>
+        <?php require_once "../sections/nav-bar.php"?>
 
         <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh; background-color: white;">
                        <h1 class="" >Sign Up</h1>
@@ -92,6 +92,7 @@ if(isset($_POST['signup'])){
                     </form>
             </div>
     </div>
+    <?php require_once "../sections/footer.php"?>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
